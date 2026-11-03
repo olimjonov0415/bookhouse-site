@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sodiqlik dasturi</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b4965'/%3E%3Cpath d='M16 6.3L18.6 13.2L26 13.6L20.2 18.2L22.2 25.3L16 21.2L9.8 25.3L11.8 18.2L6 13.6L13.4 13.2Z' fill='%23fff'/%3E%3C/svg%3E">
 <style>
   :root {
     --bg:#ffffff; --panel:#f5f6f7; --text:#16181d; --muted:#5f6672; --line:#dcdfe3;
@@ -370,7 +371,7 @@ function qidir() {
     `<dt>Maosh</dt><dd>${fmt(r.maosh)}</dd>` +
     `<dt>Qoldiq</dt><dd>${fmt(r.qoldiq)}</dd>` +
     `<dt>Bonus</dt><dd>${r.bonus}</dd>` +
-    `<dt>Bo'luvchi \u2212 qoldiq</dt><dd>${fmt(yaxl(bol - r.qoldiq))}</dd>` +
+    `<dt>Maoshga yetishmayapti</dt><dd>${fmt(yaxl(bol - r.qoldiq))}</dd>` +
     `</dl>`;
   belgila(r.id);
 }
@@ -395,7 +396,7 @@ $("addBtn").onclick = () => {
   const m = parseFloat($("add").value);
   if (!natija.length) return bildirish("Avval faylni hisoblang.");
   if (!q) return bildirish("ID kiriting.");
-  if (Number.isNaN(m) || m < 0) return bildirish("Qo'shiladigan maoshni kiriting.");
+  if (Number.isNaN(m) || m < 0) return bildirish("Qo'shiladigan shartnoma summasini kiriting.");
   let r = natija.find(x => x.id === q);
   const yangi = !r;
   if (yangi) { r = { id: q, maosh: 0, qoldiq: 0, bonus: 0 }; natija.push(r); }
@@ -407,7 +408,7 @@ $("addBtn").onclick = () => {
   if (k > 0) {
     bildirish(`<strong>${k} ta bonus qo'shildi.</strong> Jami bonus: ${r.bonus}. Qoldiq: ${fmt(r.qoldiq)}.`, true);
   } else {
-    bildirish(`Maosh qo'shildi${yangi ? " (yangi ID)" : ""}. Qoldiq: ${fmt(r.qoldiq)}. Bonus uchun ${fmt(yaxl(bol - r.qoldiq))} yetishmaydi.`);
+    bildirish(`Summa qo'shildi${yangi ? " (yangi ID)" : ""}. Qoldiq: ${fmt(r.qoldiq)}. Bonus uchun ${fmt(yaxl(bol - r.qoldiq))} yetishmaydi.`);
   }
 };
 $("add").addEventListener("keydown", e => { if (e.key === "Enter") $("addBtn").click(); });
